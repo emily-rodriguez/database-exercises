@@ -11,6 +11,13 @@ FROM employees
 WHERE last_name LIKE 'e%e'
 GROUP BY first_name, last_name;
 
+# OR:
+
+SELECT concat_ws(' ', first_name, last_name) AS fullName
+FROM employees
+WHERE last_name LIKE 'e%e'
+GROUP BY fullName;
+
 SELECT last_name
 FROM employees
 WHERE last_name LIKE '%q%'
