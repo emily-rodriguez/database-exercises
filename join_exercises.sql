@@ -50,4 +50,35 @@ JOIN dept_manager manager ON d.dept_no = manager.dept_no
 JOIN employees mgmt ON manager.emp_no = mgmt.emp_no
 WHERE de.to_date >= curdate()
 AND manager.to_date >= curdate()
-ORDER BY d.dept_name
+ORDER BY d.dept_name;
+
+SELECT AVG(s.salary), emp.gender FROM salaries s
+JOIN employees emp ON s.emp_no = emp.emp_no
+WHERE s.to_date > curdate()
+GROUP BY emp.gender;
+
+SELECT AVG(s.salary), emp.gender FROM salaries s
+JOIN employees emp ON s.emp_no = emp.emp_no
+GROUP BY emp.gender;
+
+SELECT AVG(s.salary), d.dept_name, emp.gender
+FROM salaries s
+JOIN titles t ON s.emp_no = t.emp_no
+JOIN employees emp ON s.emp_no = emp.emp_no
+JOIN dept_manager manager ON emp.emp_no = manager.emp_no
+JOIN departments d ON manager.dept_no = d.dept_no
+WHERE s.to_date > curdate()
+GROUP BY d.dept_name, emp.gender;
+
+SELECT AVG(s.salary), d.dept_name, emp.gender
+FROM salaries s
+JOIN titles t ON s.emp_no = t.emp_no
+JOIN employees emp ON s.emp_no = emp.emp_no
+JOIN dept_manager manager ON emp.emp_no = manager.emp_no
+JOIN departments d ON manager.dept_no = d.dept_no
+GROUP BY d.dept_name, emp.gender;
+
+
+
+
+
